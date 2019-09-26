@@ -9,6 +9,7 @@ h1 {
   color: black;
   font-size: 18pt;
   font-family: Arial, sans-serif;
+  font-weight: normal;
 }
 h2 {
   color: #A6192E;
@@ -21,7 +22,7 @@ form{
   margin: 10px 25% 5px 5px;
   overflow: hidden;
 }
-input[type=submit]{
+button{
   background-color: #A6192E;
   color: white;
   padding: 5px 10px;
