@@ -36,7 +36,7 @@
     border: 0px;
     margin: 0px 5px;
   }
-  input[type=text]{
+  input[type=number]{
     width: 60px;
   }
   table, th, td{
@@ -78,57 +78,61 @@
     <tr>
       <td>Activity 1</td>
       <td>A1</td>
-      <td><input type="text" id="weight1"></td>
-      <td><input type="text" id="gradenum1" oninput="percentage(1)">/</br><input type="text" id="gradeden1" oninput="percentage(1)"></td>
+      <td><input type="number" id="weight1"></td>
+      <td><input type="number" id="gradenum1" oninput="percentage(1)">/</br><input type="number" id="gradeden1" oninput="percentage(1)"></td>
     <td id="percent1"></td>
     </tr>
     <tr>
       <td>Activity 2</td>
       <td>A2</td>
-      <td><input type="text" id="weight2"></td>
-      <td><input type="text" id="gradenum2" oninput="percentage(2)">/</br><input type="text" id="gradeden2" oninput="percentage(2)"></td>
+      <td><input type="number" id="weight2"></td>
+      <td><input type="number" id="gradenum2" oninput="percentage(2)">/</br><input type="number" id="gradeden2" oninput="percentage(2)"></td>
       <td id="percent2"></td>
     </tr>
     <tr>
       <td>Activity 3</td>
       <td>A3</td>
-      <td><input type="text" id="weight3"></td>
-      <td><input type="text" id="gradenum3" oninput="percentage(3)">/</br><input type="text" id="gradeden3" oninput="percentage(3)"></td>
+      <td><input type="number" id="weight3"></td>
+      <td><input type="number" id="gradenum3" oninput="percentage(3)">/</br><input type="number" id="gradeden3" oninput="percentage(3)"></td>
       <td id="percent3"></td>
     </tr>
     <tr>
       <td>Activity 4</td>
       <td>A4</td>
-      <td><input type="text" id="weight4"></td>
-      <td><input type="text" id="gradenum4" oninput="percentage(4)">/</br><input type="text" id="gradeden4" oninput="percentage(4)"></td>
+      <td><input type="number" id="weight4"></td>
+      <td><input type="number" id="gradenum4" oninput="percentage(4)">/</br><input type="number" id="gradeden4" oninput="percentage(4)"></td>
       <td id="percent4"></td>
     </tr>
   </table>
   <h2>Result</h2>
-  <p id="answer"></p>
+  <h3 id="answer"></h3>
+  <p id="weighttotal"></p>
   <input type="submit" value="CLEAR">
   <button type="button" onclick="mean()">MEAN</button>
-  <button type="button" onclick="mean()">WEIGHTED</button>
+  <button type="button" onclick="weighted()">WEIGHTED</button>
 </form>
 
 <script>
-  function percentage(n){
-    var numerator = parseInt(document.getElementById("gradenum".concat(n)).value, 10);
-    var denominator = parseInt(document.getElementById("gradeden".concat(n)).value, 10);
+  function percentage(n){ //calculation of percentages
+    var numerator = document.getElementById("gradenum".concat(n)).value;
+    var denominator = document.getElementById("gradeden".concat(n)).value;
     document.getElementById("percent".concat(n)).innerHTML = (numerator*100/denominator).toFixed(2);
     return numerator/denominator;
   }
-  function mean(){
+  function mean(){ //calculation of mean
     document.getElementById("answer").innerHTML = ((percentage(1)+percentage(2)+percentage(3)+percentage(4))/4).toFixed(4)*100;
   }
-  function weighted(){
+  function weighted(){ //calculation of weighted total and checks total weight
     var weight = [
       parseInt(document.getElementById("weight1").value, 10),
       parseInt(document.getElementById("weight2").value, 10),
       parseInt(document.getElementById("weight3").value, 10),
       parseInt(document.getElementById("weight4").value, 10)
     ];
-    document.getElementById("answer").innerHTML = ((percentage(1)*weight[0]+percentage(2)*weight[1]+percentage(3)*weight[2]+percentage(4)*weight[3])/4).toFixed(4);
+    document.getElementById("answer").innerHTML = (percentage(1)*weight[0]+percentage(2)*weight[1]+percentage(3)*weight[2]+percentage(4)*weight[3]).toFixed(2);
+
+    var total = parseInt(weight[0], 10)+parseInt(weight[1], 10)+parseInt(weight[2], 10)+parseInt(weight[3], 10);
+    document.getElementById("weighttotal").innerHTML = "The total of the weights is ".concat(total);
   }
 </script>
 </div>
