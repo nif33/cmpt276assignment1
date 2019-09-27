@@ -22,7 +22,7 @@ form{
   margin: 10px 25% 5px 5px;
   overflow: hidden;
 }
-button{
+input[type=submit], button{
   background-color: #A6192E;
   color: white;
   padding: 5px 10px;
@@ -31,7 +31,7 @@ button{
   border: 0px;
   margin: 0px 5px;
 }
-input[type=text]{
+input[type=number]{
   width: 60px;
 }
 table, th, td{

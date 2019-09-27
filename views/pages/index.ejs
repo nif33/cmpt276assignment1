@@ -1,140 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CMPT 276 Assignment 1</title>
-  <style>
-  .box{
-    background-color: white;
-    padding: 10px 10px;
-    margin: 0% 5% 8% 5%;
-    border-top: 15px solid black;
-    border-bottom: 25px solid black;
-  }
-  h1 {
-    color: black;
-    font-size: 18pt;
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-  }
-  h2 {
-    color: #A6192E;
-    font-size: 12pt;
-    font-family: Times New Roman, serif;
-  }
-  form{
-    background-color: #E1EAEB;
-    padding: 10px 10px;
-    margin: 10px 25% 5px 5px;
-    overflow: hidden;
-  }
-  input[type=submit], button{
-    background-color: #A6192E;
-    color: white;
-    padding: 5px 10px;
-    float: right;
-    border-radius: 2px;
-    border: 0px;
-    margin: 0px 5px;
-  }
-  input[type=number]{
-    width: 60px;
-  }
-  table, th, td{
-    border: 1px solid #BABABA;
-    border-collapse: collapse;
-  }
-  th{
-    background-color: #DBDBDB;
-    font-weight: bold;
-  }
-  th, td{
-    font-size: 11pt;
-  }
-  p{
-    font-size: 10pt;
-  }
-  body{
-    background-color: #A6192E;
-    text-align: left;
-    margin: 0 0;
-  }
-  </style>
+  <% include ../partials/header.ejs %>
 </head>
+
 <body>
 
-<div class="box">
-<h1>Grade Calculator</h1>
-<form id="form1">
-  <h2>Activities</h2>
-  <p>Give grades to the numeric activities:</p>
-  <table style="width:100%">
-    <tr>
-      <th>Name</th>
-      <th>Short Name</th>
-      <th>Weight</th>
-      <th>Grade</th>
-      <th>Percent</th>
-    </tr>
-    <tr>
-      <td>Activity 1</td>
-      <td>A1</td>
-      <td><input type="number" id="weight1"></td>
-      <td><input type="number" id="gradenum1" oninput="percentage(1)">/</br><input type="number" id="gradeden1" oninput="percentage(1)"></td>
-    <td id="percent1"></td>
-    </tr>
-    <tr>
-      <td>Activity 2</td>
-      <td>A2</td>
-      <td><input type="number" id="weight2"></td>
-      <td><input type="number" id="gradenum2" oninput="percentage(2)">/</br><input type="number" id="gradeden2" oninput="percentage(2)"></td>
-      <td id="percent2"></td>
-    </tr>
-    <tr>
-      <td>Activity 3</td>
-      <td>A3</td>
-      <td><input type="number" id="weight3"></td>
-      <td><input type="number" id="gradenum3" oninput="percentage(3)">/</br><input type="number" id="gradeden3" oninput="percentage(3)"></td>
-      <td id="percent3"></td>
-    </tr>
-    <tr>
-      <td>Activity 4</td>
-      <td>A4</td>
-      <td><input type="number" id="weight4"></td>
-      <td><input type="number" id="gradenum4" oninput="percentage(4)">/</br><input type="number" id="gradeden4" oninput="percentage(4)"></td>
-      <td id="percent4"></td>
-    </tr>
-  </table>
-  <h2>Result</h2>
-  <h3 id="answer"></h3>
-  <p id="weighttotal"></p>
-  <input type="submit" value="CLEAR">
-  <button type="button" onclick="mean()">MEAN</button>
-  <button type="button" onclick="weighted()">WEIGHTED</button>
-</form>
+  <% include ../partials/nav.ejs %>
 
-<script>
-  function percentage(n){ //calculation of percentages
-    var numerator = document.getElementById("gradenum".concat(n)).value;
-    var denominator = document.getElementById("gradeden".concat(n)).value;
-    document.getElementById("percent".concat(n)).innerHTML = (numerator*100/denominator).toFixed(2);
-    return numerator/denominator;
-  }
-  function mean(){ //calculation of mean
-    document.getElementById("answer").innerHTML = ((percentage(1)+percentage(2)+percentage(3)+percentage(4))/4).toFixed(4)*100;
-  }
-  function weighted(){ //calculation of weighted total and checks total weight
-    var weight = [
-      parseInt(document.getElementById("weight1").value, 10),
-      parseInt(document.getElementById("weight2").value, 10),
-      parseInt(document.getElementById("weight3").value, 10),
-      parseInt(document.getElementById("weight4").value, 10)
-    ];
-    document.getElementById("answer").innerHTML = (percentage(1)*weight[0]+percentage(2)*weight[1]+percentage(3)*weight[2]+percentage(4)*weight[3]).toFixed(2);
-
-    var total = parseInt(weight[0], 10)+parseInt(weight[1], 10)+parseInt(weight[2], 10)+parseInt(weight[3], 10);
-    document.getElementById("weighttotal").innerHTML = "The total of the weights is ".concat(total);
-  }
-</script>
+<div class="jumbotron text-center">
+  <div class="container">
+    <a href="/" class="lang-logo">
+      <img src="/lang-logo.png">
+    </a>
+    <h1>Getting Started with Node on Heroku</h1>
+    <p>This is a sample Node application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
+    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span> Getting Started with Node</a>
+    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-js-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+  </div>
 </div>
+<div class="container">
+  <div class="alert alert-info text-center" role="alert">
+    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" class="alert-link">Getting Started with Node on Heroku</a> tutorial.
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
+      <ul>
+        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/node-js-getting-started">Heroku Button</a> on the repository.</li>
+
+        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/node-js-getting-started/blob/master/package.json">package.json</a>, creating a deployable slug.</li>
+        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
+        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
+      <ul>
+        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
+        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
+        <ul>
+          <li><code>git clone https://github.com/heroku/node-js-getting-started.git</code> - this will create a local copy of the source code for the app</li>
+          <li><code>cd node-js-getting-started</code> - change directory into the local source code repository</li>
+          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
+          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#push-local-changes">deploy changes</a> to Heroku</li>
+        </ul>
+      </ul>
+      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
+      <ul>
+        <li><a href="https://www.heroku.com/home">Heroku</a></li>
+        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
+        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started with Node on Heroku</a></li>
+        <li><a href="https://devcenter.heroku.com/articles/deploying-nodejs">Deploying Node Apps on Heroku</a></li>
+      </ul>
+    </div>
+  </div> <!-- row -->
+   <div class="alert alert-info text-center" role="alert">
+    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
+  </div>
+</div>
+
+
 </body>
 </html>
