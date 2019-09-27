@@ -1,11 +1,11 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "Grade Calculator",
+  "version": "0.1.0",
+  "description": "Assignment 1 for CMPT276",
   "engines": {
     "node": "10.x"
   },
-  "main": "index.js",
+  "main": "calculator.html",
   "scripts": {
     "start": "node index.js",
     "test": "node test.js"

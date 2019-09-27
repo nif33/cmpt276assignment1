@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CMPT 276 Assignment 1</title>
+  <style>
+  .box{
+    background-color: white;
+    padding: 10px 10px;
+    margin: 0% 5% 8% 5%;
+    border-top: 15px solid black;
+    border-bottom: 25px solid black;
+  }
+  h1 {
+    color: black;
+    font-size: 18pt;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+  }
+  h2 {
+    color: #A6192E;
+    font-size: 12pt;
+    font-family: Times New Roman, serif;
+  }
+  form{
+    background-color: #E1EAEB;
+    padding: 10px 10px;
+    margin: 10px 25% 5px 5px;
+    overflow: hidden;
+  }
+  input[type=submit], button{
+    background-color: #A6192E;
+    color: white;
+    padding: 5px 10px;
+    float: right;
+    border-radius: 2px;
+    border: 0px;
+    margin: 0px 5px;
+  }
+  input[type=number]{
+    width: 60px;
+  }
+  table, th, td{
+    border: 1px solid #BABABA;
+    border-collapse: collapse;
+  }
+  th{
+    background-color: #DBDBDB;
+    font-weight: bold;
+  }
+  th, td{
+    font-size: 11pt;
+  }
+  p{
+    font-size: 10pt;
+  }
+  body{
+    background-color: #A6192E;
+    text-align: left;
+    margin: 0 0;
+  }
+  </style>
+</head>
+<body>
+
+<div class="box">
+<h1>Grade Calculator</h1>
+<form id="form1">
+  <h2>Activities</h2>
+  <p>Give grades to the numeric activities:</p>
+  <table style="width:100%">
+    <tr>
+      <th>Name</th>
+      <th>Short Name</th>
+      <th>Weight</th>
+      <th>Grade</th>
+      <th>Percent</th>
+    </tr>
+    <tr>
+      <td>Activity 1</td>
+      <td>A1</td>
+      <td><input type="number" id="weight1"></td>
+      <td><input type="number" id="gradenum1" oninput="percentage(1)">/</br><input type="number" id="gradeden1" oninput="percentage(1)"></td>
+    <td id="percent1"></td>
+    </tr>
+    <tr>
+      <td>Activity 2</td>
+      <td>A2</td>
+      <td><input type="number" id="weight2"></td>
+      <td><input type="number" id="gradenum2" oninput="percentage(2)">/</br><input type="number" id="gradeden2" oninput="percentage(2)"></td>
+      <td id="percent2"></td>
+    </tr>
+    <tr>
+      <td>Activity 3</td>
+      <td>A3</td>
+      <td><input type="number" id="weight3"></td>
+      <td><input type="number" id="gradenum3" oninput="percentage(3)">/</br><input type="number" id="gradeden3" oninput="percentage(3)"></td>
+      <td id="percent3"></td>
+    </tr>
+    <tr>
+      <td>Activity 4</td>
+      <td>A4</td>
+      <td><input type="number" id="weight4"></td>
+      <td><input type="number" id="gradenum4" oninput="percentage(4)">/</br><input type="number" id="gradeden4" oninput="percentage(4)"></td>
+      <td id="percent4"></td>
+    </tr>
+  </table>
+  <h2>Result</h2>
+  <h3 id="answer"></h3>
+  <p id="weighttotal"></p>
+  <input type="submit" value="CLEAR">
+  <button type="button" onclick="mean()">MEAN</button>
+  <button type="button" onclick="weighted()">WEIGHTED</button>
+</form>
+
+<script>
+  function percentage(n){ //calculation of percentages
+    var numerator = document.getElementById("gradenum".concat(n)).value;
+    var denominator = document.getElementById("gradeden".concat(n)).value;
+    document.getElementById("percent".concat(n)).innerHTML = (numerator*100/denominator).toFixed(2);
+    return numerator/denominator;
+  }
+  function mean(){ //calculation of mean
+    document.getElementById("answer").innerHTML = ((percentage(1)+percentage(2)+percentage(3)+percentage(4))/4).toFixed(4)*100;
+  }
+  function weighted(){ //calculation of weighted total and checks total weight
+    var weight = [
+      parseInt(document.getElementById("weight1").value, 10),
+      parseInt(document.getElementById("weight2").value, 10),
+      parseInt(document.getElementById("weight3").value, 10),
+      parseInt(document.getElementById("weight4").value, 10)
+    ];
+    document.getElementById("answer").innerHTML = (percentage(1)*weight[0]+percentage(2)*weight[1]+percentage(3)*weight[2]+percentage(4)*weight[3]).toFixed(2);
+
+    var total = parseInt(weight[0], 10)+parseInt(weight[1], 10)+parseInt(weight[2], 10)+parseInt(weight[3], 10);
+    document.getElementById("weighttotal").innerHTML = "The total of the weights is ".concat(total);
+  }
+</script>
+</div>
+</body>
+</html>
